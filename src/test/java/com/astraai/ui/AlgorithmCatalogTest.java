@@ -38,7 +38,15 @@ class AlgorithmCatalogTest {
         assertTrue(pbkdf2.recommendation().toLowerCase().contains("compliance"));
         AlgorithmInfo hashReference = AlgorithmCatalog.all().get(4);
         assertTrue(hashReference.limitations().contains("SHA-256"));
-        assertTrue(hashReference.recommendation().contains("plain SHA-256"));
+        assertTrue(hashReference.limitations().contains("plain SHA-256"));
+        assertTrue(hashReference.guidanceLabel().contains("Not recommended"));
+        assertTrue(hashReference.recommendation().contains("concrete, parameterized KDF"));
+        assertTrue(argon2id.howItWorks().contains("Purpose:"));
+        assertTrue(argon2id.resistance().contains("Advantage:"));
+        assertTrue(argon2id.limitations().contains("Trade-off:"));
+        assertTrue(argon2id.recommendation().contains("deployment"));
+        assertTrue(argon2id.recommendation().contains("iteration"));
+        assertTrue(argon2id.recommendation().contains("unique random salt"));
         AlgorithmCatalog.all().forEach(info -> assertEquals("Benchmark · not performed", info.benchmarkLabel()));
     }
 }

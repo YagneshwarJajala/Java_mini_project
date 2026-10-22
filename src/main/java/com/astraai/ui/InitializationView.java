@@ -64,9 +64,9 @@ final class InitializationView extends StackPane implements AutoCloseable {
 
         StackPane orb = createOrb(orbit);
         VBox.setMargin(orb, new Insets(4, 0, 12, 0));
-        Label heading = new Label("Initializing Astra");
+        Label heading = new Label("Initializing PassScope");
         heading.setStyle("-fx-text-fill: #111315; -fx-font-size: 64px; -fx-font-weight: bold;");
-        Label subtitle = new Label("Preparing 100 simulated AI agents");
+        Label subtitle = new Label("Preparing 100 logical simulation agents");
         subtitle.setStyle("-fx-text-fill: #596579; -fx-font-size: 29px;");
         HBox indicators = createIndicators();
         VBox.setMargin(indicators, new Insets(34, 0, 0, 0));

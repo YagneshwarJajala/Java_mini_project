@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 class AppTest {
     @Test
-    void applicationMetadataDefinesTheExpectedStarterIdentity() {
-        assertEquals("Astra AI", AppMetadata.WINDOW_TITLE);
-        assertEquals("ASTRA AI", AppMetadata.HEADING);
-        assertEquals("Security Simulation Lab", AppMetadata.SUBTITLE);
+    void applicationMetadataDefinesThePassScopeIdentity() {
+        assertEquals("PassScope", AppMetadata.WINDOW_TITLE);
+        assertEquals("PASSSCOPE", AppMetadata.HEADING);
+        assertEquals("Password Security & Hash Analysis", AppMetadata.SUBTITLE);
         assertFalse(AppMetadata.STATUS.isBlank());
     }
 }

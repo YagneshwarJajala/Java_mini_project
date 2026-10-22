@@ -148,7 +148,7 @@ public final class AstraApplicationView extends StackPane implements AutoCloseab
         displayedSequence = snapshot.sequence();
         if (PresentationStateMapper.map(snapshot.state(), true) == PresentationState.FINAL_RESULT) {
             if (processing != null) processing.close();
-            report.update(snapshot, passwordAnalysis);
+            report.update(passwordAnalysis);
             show(PresentationState.FINAL_RESULT);
             return;
         }

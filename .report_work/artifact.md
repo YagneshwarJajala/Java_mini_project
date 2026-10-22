@@ -1,0 +1,4 @@
+Reference: C:\Users\yagne\Downloads\Project_Report_Format_Java_Mini_Project.docx
+Output: C:\Users\yagne\OneDrive\Desktop\PROJECTS\Java_mini_project\Astra_AI_One_Week_Technical_Project_Report.docx
+Template SHA-256: 89006273e01afaa8369b3d1b50e0185fbef6c39835063579c393973fbaca782
+One portrait letter-size section; margins 0.80 inches left/right and 0.70 inches top/bottom; Times New Roman; 4 original tables (Tools, seven-day progress, Challenges, Mentor Evaluation); cover and contents page; existing page furniture retained. Required slots include all 16 section bodies and tables. The Contents is manually authored and has no page-number fields. Personal, date, institutional, mentor and signature fields remain placeholders; day assignments are explicitly provisional. Remove only the template-use guidelines. Do not invent UI observations or screenshots.

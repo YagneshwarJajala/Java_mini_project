@@ -1,0 +1,16 @@
+node:internal/fs/promises:1119
+  return await PromisePrototypeThen(
+         ^
+
+Error: EPERM: operation not permitted, link 'C:\Users\yagne\OneDrive\Desktop\PROJECTS\Java_mini_project\.ppt_output\.Astra_AI_Project_Implementation_Presentation.pptx.12197cb1-987f-4bd3-9f7e-2bd9aa6f9866.validated' -> 'C:\Users\yagne\OneDrive\Desktop\PROJECTS\Java_mini_project\.ppt_output\Astra_AI_Project_Implementation_Presentation.pptx'
+    at async Object.link (node:internal/fs/promises:1119:10)
+    at async finalizePresentation (file:///C:/Users/yagne/.codex/plugins/cache/openai-primary-runtime/presentations/26.1020.11127/skills/Presentations/container_tools/artifact_tool_utils.mjs:1018:5)
+    at async file:///C:/Users/yagne/OneDrive/Desktop/PROJECTS/Java_mini_project/.ppt_work/finalize_implementation_deck.mjs:7:14 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'link',
+  path: 'C:\\Users\\yagne\\OneDrive\\Desktop\\PROJECTS\\Java_mini_project\\.ppt_output\\.Astra_AI_Project_Implementation_Presentation.pptx.12197cb1-987f-4bd3-9f7e-2bd9aa6f9866.validated',
+  dest: 'C:\\Users\\yagne\\OneDrive\\Desktop\\PROJECTS\\Java_mini_project\\.ppt_output\\Astra_AI_Project_Implementation_Presentation.pptx'
+}
+
+Node.js v24.19.0

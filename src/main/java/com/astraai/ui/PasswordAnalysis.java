@@ -5,7 +5,8 @@ import java.util.List;
 
 /** Immutable local heuristic result; it contains only derived counts, never the entered text. */
 public record PasswordAnalysis(int length, int uppercaseCount, int lowercaseCount, int digitCount,
-        int symbolCount, Strength strength, String explanation, List<String> predictablePatterns) {
+        int symbolCount, Strength strength, String explanation, List<String> predictablePatterns,
+        boolean printableAsciiOnly) {
     public enum Strength {
         WEAK("Weak", "#c63e37", 2),
         MODERATE("Moderate", "#d28b13", 4),
@@ -41,7 +42,13 @@ public record PasswordAnalysis(int length, int uppercaseCount, int lowercaseCoun
 
     public PasswordAnalysis(int length, int uppercaseCount, int lowercaseCount, int digitCount,
             int symbolCount, Strength strength, String explanation) {
-        this(length, uppercaseCount, lowercaseCount, digitCount, symbolCount, strength, explanation, List.of());
+        this(length, uppercaseCount, lowercaseCount, digitCount, symbolCount, strength, explanation, List.of(), false);
+    }
+
+    public PasswordAnalysis(int length, int uppercaseCount, int lowercaseCount, int digitCount,
+            int symbolCount, Strength strength, String explanation, List<String> predictablePatterns) {
+        this(length, uppercaseCount, lowercaseCount, digitCount, symbolCount, strength, explanation,
+                predictablePatterns, false);
     }
 
     public int characterClassCount() {

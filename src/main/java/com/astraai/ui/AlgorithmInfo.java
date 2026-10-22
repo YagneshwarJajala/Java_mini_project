@@ -36,12 +36,16 @@ public record AlgorithmInfo(String name, String category, String description,
 
     /** Short, non-measured guidance shown in the existing collapsed card header. */
     public String guidanceLabel() {
+        return guidanceFor(name);
+    }
+
+    private static String guidanceFor(String name) {
         return switch (name) {
             case "Argon2id" -> "Preferred starting point";
             case "bcrypt" -> "Compatibility alternative";
             case "scrypt" -> "Memory-hard alternative";
             case "PBKDF2" -> "Platform and compliance option";
-            case "SHA-3-based KDFs" -> "Use a dedicated password KDF";
+            case "SHA-3-based KDFs" -> "Not recommended: KDF unspecified";
             default -> "Educational reference";
         };
     }

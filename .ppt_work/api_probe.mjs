@@ -1,0 +1,3 @@
+import { FileBlob, PresentationFile } from 'file:///C:/Users/yagne/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs';
+const p=await PresentationFile.importPptx(await FileBlob.load('C:/Users/yagne/Downloads/Java_Mini_Project_PPT_Format.pptx'));
+let s=p.slides.items[2].shapes.items[3]; console.log('shape methods',Object.getOwnPropertyNames(Object.getPrototypeOf(s))); console.log('shapecoll',Object.getOwnPropertyNames(Object.getPrototypeOf(p.slides.items[2].shapes))); console.log('slide methods',Object.getOwnPropertyNames(Object.getPrototypeOf(p.slides.items[2])));

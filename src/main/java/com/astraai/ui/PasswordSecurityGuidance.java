@@ -38,14 +38,15 @@ public record PasswordSecurityGuidance(List<String> strengths, List<String> weak
         }
 
         List<String> attacks = new ArrayList<>();
-        if (!analysis.predictablePatterns().isEmpty()) {
-            attacks.add("Pattern-based guessing often tries repetitions and simple sequences; this analysis detected the pattern category listed above.");
-        }
-        if (analysis.length() < 12 || !analysis.predictablePatterns().isEmpty()) {
-            attacks.add("Dictionary guessing tests common words and phrases. No dictionary lookup was performed, so this analysis cannot say whether the input is a dictionary entry.");
-        }
-        attacks.add("Brute-force guessing enumerates candidate combinations. Length and character classes affect the search space, but this heuristic does not estimate crack time or guarantee resistance.");
-        attacks.add("Offline guessing is possible when an attacker obtains password verifiers; a slow, salted password-hashing scheme makes each guess more costly. This application did not hash or benchmark the input.");
+        String patterns = analysis.predictablePatterns().isEmpty()
+                ? "This local check did not detect a repeated-character or simple consecutive pattern."
+                : "This local check detected: " + String.join(", ", analysis.predictablePatterns()) + ".";
+        attacks.add("Pattern-based guessing tries common repetitions and simple sequences. " + patterns);
+        attacks.add("Dictionary guessing tests likely words and phrases. No dictionary lookup was performed, and no breached-password check is available, so membership is unknown.");
+        attacks.add("Brute-force guessing enumerates candidate combinations. The observed length is " + analysis.length()
+                + " characters across " + analysis.characterClassCount()
+                + " character classes; this local heuristic does not estimate crack time or guarantee resistance.");
+        attacks.add("Offline guessing can occur if an attacker obtains password verifiers. A properly configured, salted password-hashing scheme raises the cost per guess; no attack was run against this input.");
 
         List<String> recommendations = new ArrayList<>();
         if (!analysis.predictablePatterns().isEmpty()) {
@@ -60,16 +61,22 @@ public record PasswordSecurityGuidance(List<String> strengths, List<String> weak
     }
 
     public String assessmentText() {
-        return "Strengths: " + String.join(" ", strengths)
-                + "\nWeaknesses and limits: " + String.join(" ", weaknesses)
-                + "\nStrength is separate from storage security: this application did not store or hash the input.";
+        return "Strengths:\n" + String.join("\n", strengths)
+                + "\nWeaknesses and limits:\n" + String.join("\n", weaknesses)
+                + "\nLimits: " + limitationsText();
     }
 
     public String guessingText() {
-        return String.join(" ", attackExplanations);
+        return String.join("\n", attackExplanations);
+    }
+
+    public String limitationsText() {
+        return "This is a local character-count and pattern heuristic, not a dictionary, reuse, or breach check. "
+                + "It does not calculate entropy or crack time. Strength is separate from storage security; "
+                + "this application did not store or hash the input.";
     }
 
     public String recommendationText() {
-        return String.join(" ", recommendations);
+        return String.join("\n", recommendations);
     }
 }

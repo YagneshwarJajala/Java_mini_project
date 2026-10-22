@@ -33,11 +33,13 @@ final class PasswordInputPolicy {
             boolean ascending = length >= 4;
             boolean descending = length >= 4;
             boolean nonWhitespace = false;
+            boolean printableAsciiOnly = true;
             int previous = -1;
             int first = -1;
             int seen = 0;
             for (int index = 0; index < input.length;) {
                 int character = Character.codePointAt(input, index);
+                printableAsciiOnly &= character >= 0x20 && character <= 0x7e;
                 index += Character.charCount(character);
                 seen++;
                 if (Character.isUpperCase(character)) {
@@ -93,7 +95,7 @@ final class PasswordInputPolicy {
                         : "The input uses fewer than three character classes under this simple heuristic.";
             }
             return Optional.of(new PasswordAnalysis(length, uppercase, lowercase, digits, symbols,
-                    strength, explanation, patterns));
+                    strength, explanation, patterns, printableAsciiOnly));
         } finally {
             Arrays.fill(input, '\0');
         }

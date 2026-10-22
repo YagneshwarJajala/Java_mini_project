@@ -25,13 +25,14 @@ class PasswordSecurityGuidanceTest {
     }
 
     @Test
-    void avoidsClaimingPatternDetectionForAnInputWithoutRecordedPatterns() {
+    void distinguishesGeneralPatternAttackExplanationsFromObservedPatternFindings() {
         PasswordAnalysis analysis = PasswordInputPolicy.analyzeAndErase("Moon!River#92".toCharArray()).orElseThrow();
         PasswordSecurityGuidance guidance = PasswordSecurityGuidance.from(analysis);
         String text = guidance.assessmentText().toLowerCase();
         String guessing = guidance.guessingText().toLowerCase();
 
-        assertFalse(guessing.contains("pattern-based guessing"));
+        assertTrue(guessing.contains("pattern-based guessing"));
+        assertTrue(guessing.contains("did not detect"));
         assertTrue(text.contains("no repeated-character or simple consecutive sequence was detected"));
         assertTrue(text.contains("strength is separate from storage security"));
     }
